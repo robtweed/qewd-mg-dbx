@@ -1,6 +1,6 @@
 {
   "name": "qewd-mg-dbx",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Normalises mg_dbx to behave like cache.node or NodeM",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,6 @@
   "author": "Rob Tweed, M/Gateway Developments Ltd",
   "license": "Apache-2.0",
   "dependencies": {
-    "mg-dbx": ""
   },
   "bugs": {
     "url": "https://github.com/robtweed/qewd-mg-dbx/issues"
