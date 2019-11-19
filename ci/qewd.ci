@@ -1,0 +1,1 @@
+sqlquery : ydb_char_t* sqlquery^qewdSqlInterface(I:ydb_char_t*)
