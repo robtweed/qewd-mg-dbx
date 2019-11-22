@@ -23,7 +23,7 @@
  ;|  limitations under the License.                                          |
  ;----------------------------------------------------------------------------
  ;
- ; 20 November 2019
+ ; 21 November 2019
  ;
  ; QEWD Interface to mgsql
  ;
@@ -33,12 +33,26 @@ ping() ; // for testing
  ;
 sqlquery(sql) ;
  ;
- n %zi,%zo
+ n row
  ;
- m %zi=^qewdTemp($j,"input")
- s %zi("stmt")=1
- s ok=$$exec^%mgsql("",sql,.%zi,.%zo)
+ ; // selects and creates
+ ;
+ i '$d(^qewdTemp($j,"input")) d  QUIT ok
+ . n ok,%zi,%zo
+ . s %zi("stmt")=1
+ . s ok=$$exec^%mgsql("",sql,.%zi,.%zo)
+ . m ^qewdTemp($j,"output")=%zo
+ . s ^qewdTemp($j,"query")=sql
+ ;
+ ; // inserts
+ ;
+ s row=""
+ f  s row=$o(^qewdTemp($j,"input",row)) q:row=""  d
+ . n ok,%zi,%zo
+ . m %zi=^qewdTemp($j,"input",row)
+ . s %zi("stmt")=1
+ . s ok=$$exec^%mgsql("",sql,.%zi,.%zo)
+ . m ^qewdTemp($j,"output",row)=%zo
  s ^qewdTemp($j,"query")=sql
- m ^qewdTemp($j,"output")=%zo
  QUIT ok
  ;
