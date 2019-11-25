@@ -1,1 +1,2 @@
-sqlquery : ydb_char_t* sqlquery^qewdSqlInterface(I:ydb_char_t*)
+sqlquery : ydb_char_t* sqlquery^qewdInterface(I:ydb_char_t*)
+zwr : ydb_char_t* zwr^qewdInterface(I:ydb_char_t*)

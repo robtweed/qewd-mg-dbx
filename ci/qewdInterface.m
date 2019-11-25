@@ -23,13 +23,40 @@
  ;|  limitations under the License.                                          |
  ;----------------------------------------------------------------------------
  ;
- ; 21 November 2019
+ ; 25 November 2019
  ;
  ; QEWD Interface to mgsql
  ;
 ping() ; // for testing
  s ^rob("ping")=$h
  QUIT "pong"
+ ;
+openNewFile(filepath)
+ o filepath:(noreadonly:variable:newversion:exception="g openNewFileNotExists") 
+ QUIT 1
+openNewFileNotExists
+ QUIT 0
+ ;
+zwr(ref) ;
+ ;
+ n file,io,ok
+ ;
+ s file="/opt/qewd/mapped/go-"_$j_".txt"
+ s io=$io
+ s ok=$$openNewFile(file)
+ if 'ok QUIT ok
+ ;
+ s $zt="g zwrError"
+ u file
+ zwr @ref
+ c file
+ u io
+ QUIT 1
+ ;
+zwrError
+ s $zt=""
+ c file u io
+ QUIT 0
  ;
 sqlquery(sql) ;
  ;
