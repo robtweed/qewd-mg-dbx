@@ -1,6 +1,6 @@
 {
   "name": "qewd-mg-dbx",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "Normalises mg_dbx to behave like cache.node or NodeM",
   "main": "index.js",
   "scripts": {
