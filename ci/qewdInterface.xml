@@ -50,6 +50,7 @@ zwr(ref) ;
  s $zt="zwrError"
  ; remove the YottaDB ,*) at the end of the reference
  s ref=$p(ref,",*)",1)_")"
+ i ref["(*)" s ref=$p(ref,"(*)",1)
  u file
  zw @ref
  c file
