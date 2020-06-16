@@ -1,0 +1,10 @@
+service zmgsi_xinetd
+{
+  disable         = no
+  type            = UNLISTED
+  port            = 7041
+  socket_type     = stream
+  wait            = no
+  user            = root
+  server          = /usr/local/lib/yottadb/r128/zmgsi_ydb
+}

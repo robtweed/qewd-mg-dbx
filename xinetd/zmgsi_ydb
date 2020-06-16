@@ -1,0 +1,7 @@
+#!/bin/bash
+cd /usr/local/lib/yottadb/r128
+export ydb_dir=/root/.yottadb
+export ydb_dist=/usr/local/lib/yottadb/r128
+export ydb_routines="/root/.yottadb/r1.28_x86_64/o*(/root/.yottadb/r1.28_x86_64/r /root/.yottadb/r) /usr/local/lib/yottadb/r128/libyottadbutil.so"
+export ydb_gbldir="/root/.yottadb/r1.28_x86_64/g/yottadb.gld"
+$ydb_dist/ydb -r xinetd^%zmgsis
