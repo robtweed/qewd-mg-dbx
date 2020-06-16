@@ -23,12 +23,12 @@
  ;|  limitations under the License.                                          |
  ;----------------------------------------------------------------------------
  ;
- ; 27 November 2019
+ ; 16 June 2020
  ;
  ; QEWD Interface to mgsql
  ;
 ping() ; // for testing
- s ^rob("ping")=$h
+ s ^qewdTemp($j,"ping")=$h
  QUIT "pong"
  ;
 openNewFile(filepath)
@@ -84,3 +84,25 @@ sqlquery(sql) ;
  s ^qewdTemp($j,"query")=sql
  QUIT ok
  ;
+fn() ; Generic function invoker
+ ;
+ n arg,comma,func,i,result
+ ;
+ s func=$g(^qewdTemp($j,"function"))
+ i func="" QUIT -1
+ s func=func_"("
+ s i=""
+ s comma=""
+ f  s i=$o(^qewdTemp($j,"args",i)) q:i=""  d
+ . s func=func_comma_""""_^qewdTemp($j,"args",i)_""""
+ . s comma=","
+ s func="s result=$$"_func_")"
+ i $g(^qewdTemp($j,"log"))=1 d
+ . s ^qewdTemp($j,"x")=func
+ x func
+ i $g(^qewdTemp($j,"log"))=1 d
+ . s ^qewdTemp($j,"result")=result
+ ;
+ QUIT result
+ ;
+
