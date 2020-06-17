@@ -103,6 +103,6 @@ fn() ; Generic function invoker
  i $g(^qewdTemp($j,"log"))=1 d
  . s ^qewdTemp($j,"result")=result
  ;
- QUIT result
+ QUIT ""_result
  ;
 
