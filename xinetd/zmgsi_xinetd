@@ -6,5 +6,5 @@ service zmgsi_xinetd
   socket_type     = stream
   wait            = no
   user            = root
-  server          = /usr/local/lib/yottadb/r128/zmgsi_ydb
+  server          = /usr/local/lib/yottadb/r130/zmgsi_ydb
 }
