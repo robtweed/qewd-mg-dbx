@@ -5,7 +5,7 @@
  ;| ewd-document-store: Persistent JavaScript Objects and Document Database  |
  ;|                      using Global Storage                                |
  ;|                                                                          |
- ;| Copyright (c) 2016-19 M/Gateway Developments Ltd,                        |
+ ;| Copyright (c) 2016-21 M/Gateway Developments Ltd,                        |
  ;| Redhill, Surrey UK.                                                      |
  ;| All rights reserved.                                                     |
  ;|                                                                          |
@@ -26,7 +26,7 @@
  ;|  limitations under the License.                                          |
  ;----------------------------------------------------------------------------
  ;
- ; 16 June 2020
+ ; 18 January 2021
  ;
  ; QEWD Interface to mgsql: IRIS & Cache
  ;
@@ -38,9 +38,16 @@ openNewFile(filepath)
  o filepath:"rnw"
  QUIT 1
  ;
-zwr(ref) ;
+openFile(filepath)
+ o filepath:"r"
+ QUIT 1
  ;
- n file,io,ok,pieces
+deleteFile(filepath)
+ QUIT $zu(140,5,filepath)
+ ;
+zwr(ref,isStream) ;
+ ;
+ n file,io,line,ok,pieces,str
  ;
  s file="go-"_$j_".txt"
  s io=$io
@@ -54,8 +61,23 @@ zwr(ref) ;
  u file
  zw @ref
  c file
+ i $g(isStream)="" u io QUIT file
+ ;
+ s ok=$$openFile(file)
+ s $zt="zwreof"
+ u file
+ s str=""
+ f  d
+ . r line
+ . s str=str_line_$c(10)
+ QUIT  ; never gets here
+ ;
+zwreof ;
+ s $zt=""
+ c file
+ i $$deleteFile(file)
  u io
- QUIT 1
+ QUIT str
  ;
 zwrError
  s $zt=""
